@@ -18,6 +18,9 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    //Add for the project
+    public string playerName; 
+    public static MainManager Instance;
     
     // Start is called before the first frame update
     void Start()
@@ -72,5 +75,20 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+    }
+
+    private void Awake()
+    {
+        // start of new code
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    // end of new code
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        //LoadColor(); 
     }
 }
